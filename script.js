@@ -267,17 +267,18 @@ var que4=document.getElementById('btn4');
 var startquiz='';
 
 var questionschoiceRamdon = [];
+//loop for not have the same question on the Quiz.
 for (var i = 0; i < 5; i++) {
   var questionRamdon = Math.floor(Math.random() * list_Questions.length);
   if (questionschoiceRamdon[i] === questionschoiceRamdon[i - 1]) {
     questionRamdon = Math.floor(Math.random() * list_Questions.length);
   }
   questionschoiceRamdon.push(questionRamdon);
-}
 
-console.log(questionschoiceRamdon);
+
+ var Question_Number= questionRamdon;
 function startQuiz() {
-    var q1 = list_Questions[1];
+    var q1 = list_Questions[Question_Number];
 // question
     questions.innerHTML = q1.Question;
   //Possiblers answer list
@@ -286,6 +287,81 @@ function startQuiz() {
     que3.innerHTML = q1.Choices[2];
     que4.innerHTML = q1.Choices[3];
   }
+    
+  startButton.onclick = startQuiz;  
+
+  //user choices
+
+  function answerchoice1(a){
+    if (que1 == list_Questions[Question_Number].Answer){
+        console.log(true); 
+    }
+    
+
+  }
+  que1.onclick = answerchoice1;
+
+
+
+  function answerchoice2(b){
+    if (que2 == list_Questions[Question_Number].Answer){
+        console.log(true); 
+    }
+    
+
+  }
+  que2.onclick = nswerchoice2;
+
+
+
+  function answerchoice3(c){
+    if (que3 == list_Questions[Question_Number].Answer){
+        console.log(true); 
+    }
+    
+
+  }
+  que3.onclick = answerchoice3;
+
   
-  startButton.onclick = startQuiz;
+
+  function answerchoice4(d){
+    if (que4 == list_Questions[Question_Number].Answer){
+        console.log(true); 
+    }
+    
+
+  }
+  que4.onclick = answerchoice4;
+  
+  
+
+
+
+}
+console.log(questionschoiceRamdon);
+
+//   var startquiz='';
+
+// var questionschoiceRamdon = [];
+// for (var i = 0; i < 5; i++) {
+//   var questionRamdon = Math.floor(Math.random() * list_Questions.length);
+//   if (questionschoiceRamdon[i] === questionschoiceRamdon[i - 1]) {
+//     questionRamdon = Math.floor(Math.random() * list_Questions.length);
+//   }
+//   questionschoiceRamdon.push(questionRamdon);
+// }
+ 
+// function startQuiz() {
+//     var q1 = list_Questions[10];
+// // question
+//     questions.innerHTML = q1.Question;
+//   //Possiblers answer list
+//     que1.innerHTML = q1.Choices[0];
+//     que2.innerHTML = q1.Choices[1];
+//     que3.innerHTML = q1.Choices[2];
+//     que4.innerHTML = q1.Choices[3];
+//   }
+  
+//   startButton.onclick = startQuiz;
  
