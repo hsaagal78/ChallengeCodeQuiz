@@ -266,9 +266,15 @@ var que4=document.getElementById('btn4');
 
 var startquiz='';
 
-
+var questionschoiceRamdon = [];
+for (var i = 0; i < 5; i++) {
+  var questionRamdon = Math.floor(Math.random() * list_Questions.length);
+  questionschoiceRamdon.push(questionRamdon);
+  
+}
+console.log(questionschoiceRamdon);
 function startQuiz() {
-    var q1 = list_Questions[0];
+    var q1 = list_Questions[1];
 // question
     questions.innerHTML = q1.Question;
   //Possiblers answer list
