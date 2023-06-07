@@ -269,9 +269,12 @@ var startquiz='';
 var questionschoiceRamdon = [];
 for (var i = 0; i < 5; i++) {
   var questionRamdon = Math.floor(Math.random() * list_Questions.length);
+  if (questionschoiceRamdon[i] === questionschoiceRamdon[i - 1]) {
+    questionRamdon = Math.floor(Math.random() * list_Questions.length);
+  }
   questionschoiceRamdon.push(questionRamdon);
-  
 }
+
 console.log(questionschoiceRamdon);
 function startQuiz() {
     var q1 = list_Questions[1];
