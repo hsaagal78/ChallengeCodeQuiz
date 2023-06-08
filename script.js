@@ -256,17 +256,21 @@ var list_Questions = [
     },
 ];
 
-var startButton= document.getElementById('start');
-var questions= document.getElementById('questions');
-var answer_option= document.getElementById('answer');
-var que1= document.getElementById('btn1');
-var que2=document.getElementById('btn2');
-var que3=document.getElementById('btn3');
-var que4=document.getElementById('btn4');
+  var resultsDiv = document.getElementById('result');
+  var startButton = document.getElementById('start');
+  var questions = document.getElementById('questions');
+  var answer_option = document.getElementById('answer');
+  var que1 = document.getElementById('btn1');
+  var que2 = document.getElementById('btn2');
+  var que3 = document.getElementById('btn3');
+  var que4 = document.getElementById('btn4');
 
-var startquiz='';
-
-var questionschoiceRamdon = [];
+  
+  
+  var scoreTrue = 0;
+  var scoreFalse = 0;
+  var n=0;
+ var questionschoiceRamdon = [];
 //loop for not have the same question on the Quiz.
 for (var i = 0; i < 5; i++) {
   var questionRamdon = Math.floor(Math.random() * list_Questions.length);
@@ -274,94 +278,53 @@ for (var i = 0; i < 5; i++) {
     questionRamdon = Math.floor(Math.random() * list_Questions.length);
   }
   questionschoiceRamdon.push(questionRamdon);
+  console.log(questionschoiceRamdon);
+
+}
 
 
- var Question_Number= questionRamdon;
-function startQuiz() {
-    var q1 = list_Questions[Question_Number];
-// question
-    questions.innerHTML = q1.Question;
-  //Possiblers answer list
-    que1.innerHTML = q1.Choices[0];
-    que2.innerHTML = q1.Choices[1];
-    que3.innerHTML = q1.Choices[2];
-    que4.innerHTML = q1.Choices[3];
-  }
+//  var Question_Number= questionRamdon;
+
+  function startQuiz() {
     
-  startButton.onclick = startQuiz;  
+    var current = list_Questions[questionschoiceRamdon[n]];
+    questions.innerHTML = current.Question;
+    que1.innerHTML = current.Choices[0];
+    que2.innerHTML = current.Choices[1];
+    que3.innerHTML = current.Choices[2];
+    que4.innerHTML = current.Choices[3];
+  }
 
-  //user choices
+  startButton.onclick = startQuiz;
 
-  function answerchoice1(a){
-    if (que1 == list_Questions[Question_Number].Answer){
-        console.log(true); 
+  function answerChoice(answer) {
+    var current = list_Questions[questionschoiceRamdon[n]];
+    if (answer === current.Answer) {
+      console.log('Correct');
+      scoreTrue++;
+    } else {
+      console.log('Incorrect');
+      scoreFalse++;
     }
-    
-
-  }
-  que1.onclick = answerchoice1;
 
 
+    console.log('Correct answers:', scoreTrue);
 
-  function answerchoice2(b){
-    if (que2 == list_Questions[Question_Number].Answer){
-        console.log(true); 
+    // questionschoiceRamdon[n]++;
+    if (n < current.Answer.length) {
+        n++;
+        resultsDiv.innerText = 'Correct answers: ' + scoreTrue + '<br>' + 'Incorrect answers: ' + scoreFalse;
+        startQuiz();
+      
+    } else {
+      console.log('Quiz finished');
+      console.log('Correct answers:', scoreTrue);
+      console.log('Incorrect answers:', scoreFalse);
+      resultsDiv.innerText = 'Quiz finished<br>';
+      resultsDiv.innerText += 'Your Final score is: ' + scoreTrue + '<br>';
+      resultsDiv.innerText += 'Incorrect answers: ' + scoreFalse + '<br>';
+      resultsDiv.innerText = 'Correct answers: ' + scoreTrue + '<br>' + 'Incorrect answers: ' + scoreFalse;
     }
-    
-
-  }
-  que2.onclick = nswerchoice2;
-
-
-
-  function answerchoice3(c){
-    if (que3 == list_Questions[Question_Number].Answer){
-        console.log(true); 
-    }
-    
-
-  }
-  que3.onclick = answerchoice3;
-
-  
-
-  function answerchoice4(d){
-    if (que4 == list_Questions[Question_Number].Answer){
-        console.log(true); 
-    }
-    
-
-  }
-  que4.onclick = answerchoice4;
-  
-  
-
 
 
 }
-console.log(questionschoiceRamdon);
-
-//   var startquiz='';
-
-// var questionschoiceRamdon = [];
-// for (var i = 0; i < 5; i++) {
-//   var questionRamdon = Math.floor(Math.random() * list_Questions.length);
-//   if (questionschoiceRamdon[i] === questionschoiceRamdon[i - 1]) {
-//     questionRamdon = Math.floor(Math.random() * list_Questions.length);
-//   }
-//   questionschoiceRamdon.push(questionRamdon);
-// }
- 
-// function startQuiz() {
-//     var q1 = list_Questions[10];
-// // question
-//     questions.innerHTML = q1.Question;
-//   //Possiblers answer list
-//     que1.innerHTML = q1.Choices[0];
-//     que2.innerHTML = q1.Choices[1];
-//     que3.innerHTML = q1.Choices[2];
-//     que4.innerHTML = q1.Choices[3];
-//   }
-  
-//   startButton.onclick = startQuiz;
- 
