@@ -272,7 +272,7 @@ var list_Questions = [
   var n=0;
  var questionschoiceRamdon = [];
 //loop for not have the same question on the Quiz.
-for (var i = 0; i < 5; i++) {
+for (var i = 0; i < 2; i++) {
   var questionRamdon = Math.floor(Math.random() * list_Questions.length);
   if (questionschoiceRamdon[i] === questionschoiceRamdon[i - 1]) {
     questionRamdon = Math.floor(Math.random() * list_Questions.length);
@@ -300,31 +300,35 @@ for (var i = 0; i < 5; i++) {
   function answerChoice(answer) {
     var current = list_Questions[questionschoiceRamdon[n]];
     if (answer === current.Answer) {
-      console.log('Correct');
+        console.log(current.Answer);
+        console.log('Correct');
       scoreTrue++;
     } else {
+        console.log(current.Answer);
       console.log('Incorrect');
       scoreFalse++;
     }
 
-
-    console.log('Correct answers:', scoreTrue);
-
+    n+=1;
     // questionschoiceRamdon[n]++;
-    if (n < current.Answer.length) {
-        n++;
-        resultsDiv.innerText = 'Correct answers: ' + scoreTrue + '<br>' + 'Incorrect answers: ' + scoreFalse;
+    if (n < questionschoiceRamdon.length) {
+        
         startQuiz();
       
     } else {
       console.log('Quiz finished');
       console.log('Correct answers:', scoreTrue);
       console.log('Incorrect answers:', scoreFalse);
-      resultsDiv.innerText = 'Quiz finished<br>';
+      resultsDiv.innerText = 'Quiz finished';
       resultsDiv.innerText += 'Your Final score is: ' + scoreTrue + '<br>';
-      resultsDiv.innerText += 'Incorrect answers: ' + scoreFalse + '<br>';
-      resultsDiv.innerText = 'Correct answers: ' + scoreTrue + '<br>' + 'Incorrect answers: ' + scoreFalse;
-    }
+    //   resultsDiv.innerText += 'Incorrect answers: ' + scoreFalse + '<br>';
+    //   resultsDiv.innerText = 'Correct answers: ' + scoreTrue + '<br>' + 'Incorrect answers: ' + scoreFalse;
+     }
 
 
 }
+
+  que1.onclick = function() { answerChoice(que1.innerHTML); };
+  que2.onclick = function() { answerChoice(que2.innerHTML); };
+  que3.onclick = function() { answerChoice(que3.innerHTML); };
+  que4.onclick = function() { answerChoice(que4.innerHTML); };
