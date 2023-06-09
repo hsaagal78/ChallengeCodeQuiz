@@ -255,7 +255,7 @@ var list_Questions = [
         Answer: 'letter-spacing'
     },
 ];
-
+var firstPage=document.getElementById('quiz');
 var resultsDiv = document.getElementById('result');
 var startButton = document.getElementById('start');
 var questions = document.getElementById('questions');
@@ -324,6 +324,7 @@ for (var i = 0; i < 2; i++) {
 
 //Funtion to start the quiz
 function startQuiz() {
+    firstPage.style.display= 'none';
     countdown();
     var current = list_Questions[questionschoiceRamdon[n]];
     questions.innerHTML = current.Question;
@@ -334,7 +335,13 @@ function startQuiz() {
 }
 startButton.onclick = startQuiz;
 
-
+function apagarDos () {
+    questions.style.display= 'none';
+    que1.style.display= 'none';
+    que2.style.display= 'none';
+    que3.style.display= 'none';
+    que4.style.display= 'none';
+}
 
 //Funtion to store the score
 function answerChoice(answer) {
@@ -357,7 +364,8 @@ function answerChoice(answer) {
         startQuiz();
 
     } else {
-
+        apagarDos ();
+        // questions.style.display= 'none';
         console.log('Quiz finished');
         console.log('Correct answers:', scoreTrue);
         console.log('Incorrect answers:', scoreFalse);
@@ -365,11 +373,9 @@ function answerChoice(answer) {
         resultsDiv.innerText += 'Your Final score is: ' + scoreTrue + '<br>';
     }
 
-    
-
-
 
 }
+
 
 //call funtion answer choices
 que1.onclick = function () { answerChoice(que1.innerHTML); };
