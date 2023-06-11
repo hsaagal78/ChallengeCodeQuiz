@@ -374,11 +374,6 @@ function answerChoice(answer) {
 
 }
 
-
-
-
-
-
 function finisheQuiz() {
     
     hideSecondPage();
@@ -388,6 +383,60 @@ function finisheQuiz() {
     resultsDiv.innerText = 'All done';
     resultsDiv.innerHTML += 'Your Final score is: ' + scoreTrue + '<br>';
   }
+
+
+
+function saveUserData (arr){
+    var jsonVal = JSON.stringify(arr);
+    
+    localStorage.setItem('user', jsonVal);
+    
+}
+
+function saveUserClicks (evenObj) {
+    if(evenObj.keyCode ===13) {
+
+        var userScore ={
+            name: input.value,
+            clicks : clicks
+        };
+
+        var userArray = getUserData();
+        userArray.push(userScore);
+
+        saveUserData(userArray);
+        showScores();
+        clearData();
+    }
+}
+
+function showScores(){
+    var users = getUserData();
+    var scoresDiv = document.querySelector('scores');
+    scoresDiv.innerHTML ='';
+
+    if (users.length===0) {
+
+        scoresDiv.innerHTML = '<p> no scores have been added </p>';
+
+    }
+
+    for (var userObj of users) {
+        var div = document.createElement('div');
+        div.classList.add('score');
+
+        var h3 = document.createElement('h3');
+        div.innerText = 'Name: ${userObj.name}';
+        div.append(h3);
+        var p = document.createElement('p');
+        p.innerText = 'clicks: ${userObj. clicks}';
+        div.append(p);
+        scoresDiv.append(div);
+
+    }
+
+}
+
 
 
 //call funtion answer choices

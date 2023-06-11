@@ -8,6 +8,14 @@
     <title>Code-Quiz</title>
 </head>
 <body>
+
+    <header>
+        <div class="container">
+            <h1 class="timer"></h1>
+            <h2 id="countdown"></h2>
+            <!-- <p id="main"></p> -->
+          </div>
+    </header>
     <div id= 'quiz' class= 'quiz'>
         <h1>Coding Quiz Challenge</h1>
         <p>Try to answer the follow code-related questions with the time limit keep in mind that incorrect answers will penalize your score/time by ten seconds!</p>
@@ -16,7 +24,7 @@
   
     <div id=questions class="questions"></div>
         
-    <div id=answer style="display: none;">
+    <div id=answer style="display: none;" >
         <button class="btn1" onclick="op1" id="btn1">option1</button>
         <button class="btn2" onclick="op2" id="btn2">option2</button>
         <button class="btn3" onclick="op3" id="btn3">option3</button>
@@ -24,12 +32,13 @@
             
 
     </div>
-    
+  
+<!--     
     <div class="container">
       <h1 class="timer"></h1>
       <h2 id="countdown"></h2>
       <p id="main"></p>
-    </div>
+    </div> -->
     <div id= result></div>
 
     <form id= 'studentInf' style="display: none;">
@@ -37,6 +46,7 @@
         placeholder=" Enter Inicials">
         <button>Sumit</button>
     </form>
+    <div class ='scores'></div>
      
 
 
