@@ -11,11 +11,12 @@
     <div id= 'quiz' class= 'quiz'>
         <h1>Coding Quiz Challenge</h1>
         <p>Try to answer the follow code-related questions with the time limit keep in mind that incorrect answers will penalize your score/time by ten seconds!</p>
-        <button id = start class = start onclick = startbtn >Start Quiz</button>
+        <button id = 'start' class = 'start ' >Start Quiz</button>
     </div>
+  
     <div id=questions class="questions"></div>
         
-    <div class=answer>
+    <div id=answer style="display: none;">
         <button class="btn1" onclick="op1" id="btn1">option1</button>
         <button class="btn2" onclick="op2" id="btn2">option2</button>
         <button class="btn3" onclick="op3" id="btn3">option3</button>
@@ -31,14 +32,10 @@
     </div>
     <div id= result></div>
 
-    <form id= "studentInf">
-
+    <form id= 'studentInf' style="display: none;">
         <input id= "StudentInicial" type="text"
         placeholder=" Enter Inicials">
-
         <button>Sumit</button>
-
-
     </form>
      
 

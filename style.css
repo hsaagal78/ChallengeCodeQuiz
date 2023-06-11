@@ -1,0 +1,43 @@
+body {
+    
+    position: relative;
+    margin: 0;
+    padding: 0;
+  }
+  
+  
+  
+  .quiz {
+
+
+        text-align: center;
+
+
+  }
+  .answer {
+
+    text-align: center;
+  }
+
+  .timer {
+
+    position: absolute;
+    padding-top: 15px;
+    margin-right: 20px;
+    float: left;
+    font-size: 50px;
+  }
+
+  
+  .answer {
+
+    display: block;
+  }
+  .timerElement{
+
+    position: absolute;
+    padding-top: 15px;
+    margin-right: 20px;
+    float: left;
+    font-size: 50px;
+  }

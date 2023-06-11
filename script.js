@@ -255,58 +255,59 @@ var list_Questions = [
         Answer: 'letter-spacing'
     },
 ];
-var firstPage=document.getElementById('quiz');
+var firstPage = document.getElementById('quiz');
 var resultsDiv = document.getElementById('result');
 var startButton = document.getElementById('start');
 var questions = document.getElementById('questions');
-var answer_option = document.getElementById('answer');
+var answerOption = document.getElementById('answer');
 var que1 = document.getElementById('btn1');
 var que2 = document.getElementById('btn2');
 var que3 = document.getElementById('btn3');
 var que4 = document.getElementById('btn4');
-var timerEl = document.getElementById('countdown');
 var mainEl = document.getElementById('main');
-var timerElement = document.querySelector('.timer');
+
 var scoreTrue = 0;
 var scoreFalse = 0;
 var n = 0;
 var questionschoiceRamdon = [];
-var StopTimer=0;
-
+var StopTimer = 0;
+var minutesLeft = 1 * 60;
 
 //Show the timer
-function showpage() {
-
+function showtimer() {
+    var timerElement = document.querySelector('.timer');
     timerElement.innerText = ('Time');
 }
 
 
 //Countdown funtion   
-function countdown() {
-    
-    showpage();
-    var timeLeft = 1 * 60; // 5 minutos en segundos
+function countdownTimer() {
 
-    // TODO: Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
+    showtimer();
+
+    // var minutesLeft = 1 * 60; // in order to countdown in minutes
+
+    //Funtion that control the countdown using setInterval propety that help time-interval.
     var timeInterval = setInterval(function () {
-        var minutes = Math.floor(timeLeft / 60); // Convertir segundos a minutos
-        var seconds = timeLeft % 60; // Obtener los segundos restantes
-        timerEl.innerText = minutes + ' min ' + seconds + ' sec'; // Mostrar minutos y segundos restantes
-        timeLeft--; // Decrementar el tiempo restante en segundos
-        
-        if (timeLeft === 0) {
+        var countDownTime = document.getElementById('countdown');
+        var minutes = Math.floor(minutesLeft / 60); // Convert seconds to minutes
+        var seconds = minutesLeft % 60; 
+        countDownTime.innerText = minutes + ' min ' + seconds + ' sec'; 
+        minutesLeft--; 
+
+        if (minutesLeft === 0) {
             clearInterval(timeInterval);
-            n = questionschoiceRamdon.length + 1;//n is highter the question array length for stop show questions
-            timerEl.innerText = '¡Time up!';
+            n = questionschoiceRamdon.length + 1;// this line help to stop showing more  questions in the displayed 
+            countDownTime.innerText = '¡Time up!';
             resultsDiv.innerText = 'Sorry';
             resultsDiv.innerText += 'your final score is: ' + scoreTrue + '<br>';
         }
-        if ( n === questionschoiceRamdon.length) {
+        if (n === questionschoiceRamdon.length) { //lhis line help to stop the countdown timer when user finished the quiz
             clearInterval(timeInterval);
         }
-        
 
-    },1000);
+
+    }, 1000);
 }
 
 
@@ -318,14 +319,16 @@ for (var i = 0; i < 2; i++) {
         questionRamdon = Math.floor(Math.random() * list_Questions.length);
     }
     questionschoiceRamdon.push(questionRamdon);
-    console.log(questionschoiceRamdon);
 
 }
 
+
+
 //Funtion to start the quiz
 function startQuiz() {
-    firstPage.style.display= 'none';
-    countdown();
+    firstPage.style.display = 'none';
+    answerOption.style.display = "block";
+    countdownTimer();
     var current = list_Questions[questionschoiceRamdon[n]];
     questions.innerHTML = current.Question;
     que1.innerHTML = current.Choices[0];
@@ -333,14 +336,15 @@ function startQuiz() {
     que3.innerHTML = current.Choices[2];
     que4.innerHTML = current.Choices[3];
 }
-startButton.onclick = startQuiz;
+startButton.addEventListener('click',startQuiz);
 
-function apagarDos () {
-    questions.style.display= 'none';
-    que1.style.display= 'none';
-    que2.style.display= 'none';
-    que3.style.display= 'none';
-    que4.style.display= 'none';
+// this funtion hide in the moment finished the quiz
+function hideSecondPage() {
+    questions.style.display = 'none';
+    que1.style.display = 'none';
+    que2.style.display = 'none';
+    que3.style.display = 'none';
+    que4.style.display = 'none';
 }
 
 //Funtion to store the score
@@ -352,29 +356,35 @@ function answerChoice(answer) {
         console.log('Correct');
         scoreTrue++;
     } else {
+        minutesLeft -=20;
         console.log(current.Answer);
         console.log('Incorrect');
         scoreFalse++;
     }
 
     n += 1;
-    
+
     if (n < questionschoiceRamdon.length) {
 
         startQuiz();
 
     } else {
-        apagarDos ();
-        // questions.style.display= 'none';
+        hideSecondPage();
+        submitResult();
         console.log('Quiz finished');
         console.log('Correct answers:', scoreTrue);
         console.log('Incorrect answers:', scoreFalse);
-        resultsDiv.innerText = 'All done';
-        resultsDiv.innerText += 'Your Final score is: ' + scoreTrue + '<br>';
-    }
+    
+     }
 
 
 }
+function submitResult() {
+    var studentInformation = document.querySelector('#studentInf');
+    studentInformation.style.display = 'block';
+    resultsDiv.innerText = 'All done';
+    resultsDiv.innerHTML += 'Your Final score is: ' + scoreTrue + '<br>';
+  }
 
 
 //call funtion answer choices
