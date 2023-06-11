@@ -272,10 +272,11 @@ var n = 0;
 var questionschoiceRamdon = [];
 var StopTimer = 0;
 var minutesLeft = 1 * 60;
+var timerElement = document.querySelector('.timer');
+
 
 //Show the timer
 function showtimer() {
-    var timerElement = document.querySelector('.timer');
     timerElement.innerText = ('Time');
 }
 
@@ -285,8 +286,6 @@ function countdownTimer() {
 
     showtimer();
 
-    // var minutesLeft = 1 * 60; // in order to countdown in minutes
-
     //Funtion that control the countdown using setInterval propety that help time-interval.
     var timeInterval = setInterval(function () {
         var countDownTime = document.getElementById('countdown');
@@ -295,18 +294,12 @@ function countdownTimer() {
         countDownTime.innerText = minutes + ' min ' + seconds + ' sec'; 
         minutesLeft--; 
 
-        if (minutesLeft === 0) {
+        if (minutesLeft <= 0 || n === questionschoiceRamdon.length) {
             clearInterval(timeInterval);
-            n = questionschoiceRamdon.length + 1;// this line help to stop showing more  questions in the displayed 
-            countDownTime.innerText = '¡Time up!';
-            resultsDiv.innerText = 'Sorry';
-            resultsDiv.innerText += 'your final score is: ' + scoreTrue + '<br>';
+            countDownTime.innerText = '';
+            finisheQuiz();       
         }
-        if (n === questionschoiceRamdon.length) { //lhis line help to stop the countdown timer when user finished the quiz
-            clearInterval(timeInterval);
-        }
-
-
+       
     }, 1000);
 }
 
@@ -338,6 +331,8 @@ function startQuiz() {
 }
 startButton.addEventListener('click',startQuiz);
 
+
+
 // this funtion hide in the moment finished the quiz
 function hideSecondPage() {
     questions.style.display = 'none';
@@ -356,7 +351,7 @@ function answerChoice(answer) {
         console.log('Correct');
         scoreTrue++;
     } else {
-        minutesLeft -=20;
+        minutesLeft -=50;
         console.log(current.Answer);
         console.log('Incorrect');
         scoreFalse++;
@@ -369,8 +364,7 @@ function answerChoice(answer) {
         startQuiz();
 
     } else {
-        hideSecondPage();
-        submitResult();
+        finisheQuiz();
         console.log('Quiz finished');
         console.log('Correct answers:', scoreTrue);
         console.log('Incorrect answers:', scoreFalse);
@@ -379,7 +373,16 @@ function answerChoice(answer) {
 
 
 }
-function submitResult() {
+
+
+
+
+
+
+function finisheQuiz() {
+    
+    hideSecondPage();
+    timerElement.innerText = '';
     var studentInformation = document.querySelector('#studentInf');
     studentInformation.style.display = 'block';
     resultsDiv.innerText = 'All done';
