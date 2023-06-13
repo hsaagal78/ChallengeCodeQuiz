@@ -67,7 +67,7 @@ for (var i = 0; i < 2; i++) {
 
 //Funtion to start the quiz
 function startQuiz() {
-    starOneMoreTime.style.display = 'none';// hide the start the quiz
+    // starOneMoreTime.style.display = 'none';// hide the start the quiz
     resultsDiv.innerText = answerEachTime;
     firstPage.style.display = 'none';
     answerOption.style.display = "block";
@@ -86,7 +86,7 @@ startButton.addEventListener('click',startQuiz);
 
 // this funtion hide in the moment finished the quiz
 function hideSecondPage() {
-    resultsDiv.innerText = 'answerEachTime';
+    
     questions.style.display = 'none';
     que1.style.display = 'none';
     que2.style.display = 'none';
@@ -120,8 +120,11 @@ function answerChoice(answer) {
     if (n < questionschoiceRamdon.length) {
 
         startQuiz();
+       
+
 
     } else {
+        
         finisheQuiz();
         console.log('Quiz finished');
         console.log('Correct answers:', scoreTrue);
@@ -131,77 +134,94 @@ function answerChoice(answer) {
 
 
 }
+que1.onclick = function (event) {
+    event.stopPropagation();
+    answerChoice(que1.innerHTML);
+  };
+  
+  que2.onclick = function (event) {
+    event.stopPropagation();
+    answerChoice(que2.innerHTML);
+  };
+  
+  que3.onclick = function (event) {
+    event.stopPropagation();
+    answerChoice(que3.innerHTML);
+  };
+  
+  que4.onclick = function (event) {
+    event.stopPropagation();
+    answerChoice(que4.innerHTML);
+  };
 
 function finisheQuiz() {
     
     hideSecondPage();
     timerElement.innerText = '';
-    var studentInformation = document.querySelector('#studentInf');
     studentInformation.style.display = 'block';
     resultsDiv.innerText = 'All done';
     resultsDiv.innerHTML += 'Your Final score is: ' + scoreTrue + '<br>';
-    starOneMoreTime.style.display = 'block';
-    startQ.style.display = 'block';
-    scoresDiv.style.display = 'block';
+
   }
 ///////////////////////////////////////////////////////////////////////
- var starOneMoreTime= document.querySelector('#ClearScore');
+var studentInformation = document.querySelector('#studentInf');
+ var cleanScore= document.querySelector('#ClearScore');
  var startQ= document.querySelector('.againQuiz');
- var input = document.querySelector('#StudentInicial');
- var scoresDiv = document.querySelector('.scores');
- var sumit = document.querySelector('#studentInf');
+//  var input = document.querySelector('#StudentInicial');
+
+ var submit = document.querySelector('#submitAction');
 
  function starAgain() {
 
     startQuiz();
+    clearData()
+
 
  }
  startQ.addEventListener('click', starAgain);
 
-  // this function shows when user wants to taken again the quiz and score new score will be save;
+
   function clearData() { 
     input.value = '';
     scoreTrue= 0;
     scoreFalse=0;
+    startQuiz();
 
   }
 
+  cleanScore.addEventListener('click', clearData)
+
   function getUserData() {
-    var rawData = localStorage.getItem(!input.value);
+    var rawData = localStorage.getItem(input.value);
     var parsed = JSON.parse(rawData) || [];
-    
-    
-    return parsed;
+   
+  return parsed;
   }
   
   function saveStudentData(arr) {
     var jsonArray = JSON.stringify(arr);
-    localStorage.setItem(input.value, jsonArray); // Changed key to 'users'
-   
+    localStorage.setItem(input.value, jsonArray); 
   }
   
-  function saveUserClicks(eventObj) {
-   
+  function CreateNewArray() {
+    
         var userScore = {
           True: scoreTrue,
           False: scoreFalse,
           name: input.value
-        };
-   
+       
+    }
     var userArray = getUserData();
     userArray.push(userScore);
-        
     saveStudentData(userArray);
-    showScores();
-    clearData();
     
     }
         
-  
-    sumit.addEventListener('click', saveUserClicks); 
-  
+    submit.addEventListener('click', CreateNewArray);
+    // input.addEventListener('key',saveStudentData);
+
     function showScores() {
-        var users = getUserData();
+        var users = saveStudentData;
         var scoresDiv = document.querySelector('.scores');
       
         scoresDiv.innerHTML = '';
@@ -212,38 +232,17 @@ function finisheQuiz() {
       
         for (var userObj of users) {
           var div = document.createElement('div');
-      
-          var h3 = document.createElement('h3');
-          h3.innerText = `Name: ${userObj.name}`; // Set content for h3
-          div.append(h3);
-      
-          var p = document.createElement('p');
-          p.innerText = `True: ${userObj.True}`; // Set content for p
-          div.append(p);
-      
-          var p2 = document.createElement('p');
-          p2.innerText = `False: ${userObj.False}`; // Set content for p2
-          div.append(p2);
-      
+
+          var li= document.createElement('li');
+          li.innerText = `Name: ${userObj.name} - True: ${userObj.True}`;
+          div.append(li);
+    
           scoresDiv.append(div);
         }
-      }
+    }
+    showScores();
     
-      
-      
-      
-      
-      
-      
-      
+    
     
 
-showScores();
 
-
-
-//call funtion answer choices
-que1.onclick = function () { answerChoice(que1.innerHTML); };
-que2.onclick = function () { answerChoice(que2.innerHTML); };
-que3.onclick = function () { answerChoice(que3.innerHTML); };
-que4.onclick = function () { answerChoice(que4.innerHTML); };
