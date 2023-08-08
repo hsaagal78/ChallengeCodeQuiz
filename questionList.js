@@ -29,7 +29,7 @@ var list_Questions = [
     },
     {
         Question: 'What is the correct way to write a JavaScript comment?',
-        Choices: ['// This is a comment', '<!-- This is a comment -->', '/* This is a comment */', '// This is a comment //'],
+        Choices: ['// This is a comment', '<-- This is a comment -->', '/* This is a comment */', '// This is a comment //'],
         Answer: '// This is a comment'
     },
     {
@@ -68,21 +68,13 @@ var list_Questions = [
         Answer: 'border-radius'
     },
     
-    {
-        Question: 'How do you write "Hello, World!" in an alert box using JavaScript?',
-        Choices: ['msg("Hello, World!");', 'document.alert("Hello, World!");', 'alertBox("Hello, World!");', 'alert("Hello, World!");'],
-        Answer: 'alert("Hello, World!");'
-    },
+  
     {
         Question: ' What does the CSS property "position: absolute;" do?',
         Choices: ['Positions an element relative to its nearest positioned ancestor', 'Positions an element absolutely within its containing element', 'Positions an element at the top left corner of the page', 'Positions an element relative to the mouse pointer'],
         Answer: 'Positions an element absolutely within its containing element'
     },
-    {
-        Question: ' Which operator is used to concatenate strings in JavaScript?',
-        Choices: ['+', '-', '*', '.'],
-        Answer: '+'
-    },
+ 
     {
         Question: 'What is the purpose of the HTML <footer> tag?',
         Choices: ['To define a footer section for the document', 'To define a footer section for a table', 'To define the main content of the document', 'To define a footer section for a form'],
@@ -107,7 +99,7 @@ var list_Questions = [
   
     {
         Question: 'How can you include an external JavaScript file in your HTML document?',
-        Choices: ['<js src="script.js">', '<script src="script.js">', '<include src="script.js">', '<link rel="script" href="script.js">'],
+        Choices: ['<js src=script.js>', '<script src=script.js>', '<include src=script.js>', '<link rel="script" href=script.js>'],
         Answer: '<script src="script.js">'
     },
     {
@@ -131,11 +123,7 @@ var list_Questions = [
         Choices: ['To add an event handler to an element', 'To create a new event', 'To remove an event listener', 'To trigger an event'],
         Answer: 'To add an event handler to an element'
     },
-    {
-        Question: 'How do you write a single-line comment in CSS?',
-        Choices: ['/* This is a comment */', '// This is a comment', '<!-- This is a comment -->', '# This is a comment'],
-        Answer: '// This is a comment'
-    },
+  
     {
         Question: 'What is the purpose of the HTML <nav> tag?',
         Choices: ['To define navigation links', 'To define a section of navigation within the document', 'To define a navigation menu', 'To define a section of links'],
@@ -153,11 +141,6 @@ var list_Questions = [
     },
 
    
-    {
-        Question: ' How do you write an if statement in JavaScript?',
-        Choices: ['if x = 5 then', 'if (x == 5)', 'if x == 5:', 'if x = 5'],
-        Answer: 'if (x == 5)'
-    },
     {
         Question: 'What is the purpose of the CSS property "text-align"?',
         Choices: ['To align text vertically', 'To align text horizontally', 'To change the size of the text', 'To change the font of the text'],

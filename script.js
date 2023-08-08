@@ -45,7 +45,7 @@ function countdownTimer() {
 
 //Loop to avoid same question on the Quiz.
 function RamdonQuestion() {
-  for (var i = 0; i < 2; i++) {
+  for (var i = 0; i < 5; i++) {
     var questionRamdon = Math.floor(Math.random() * list_Questions.length);
     if (questionschoiceRamdon[i] === questionschoiceRamdon[i - 1]) {
       questionRamdon = Math.floor(Math.random() * list_Questions.length);
@@ -57,7 +57,7 @@ RamdonQuestion();
 
 //Function to start the quiz
 function startQuiz() {
-  if (n === 0) {
+ 
     resultsDiv.innerText = answerEachTime;
     firstPage.style.display = 'none';
     answerOption.style.display = "block";
@@ -68,7 +68,7 @@ function startQuiz() {
     que2.innerHTML = current.Choices[1];
     que3.innerHTML = current.Choices[2];
     que4.innerHTML = current.Choices[3];
-  }
+  
 }
 startButton.addEventListener('click', startQuiz);
 
